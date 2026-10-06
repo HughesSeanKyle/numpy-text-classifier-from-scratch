@@ -71,8 +71,10 @@ def corpus_to_bow_matrix(tokenized_corpus: list[list[str]], vocab: dict[str, int
         
     return np.array([tokens_to_bow(tokens, vocab) for tokens in tokenized_corpus])
 
-# Step 9 - compute_document_frequencies (not yet solved)
-# TODO: implement
+# Step 9 - compute_document_frequencies
+# ── Step 009  compute_document_frequencies ──
+def compute_document_frequencies(bow_matrix: np.ndarray) -> np.ndarray:
+    return np.sum(bow_matrix > 0, axis=0)
 
 # Step 10 - compute_idf (not yet solved)
 # TODO: implement
