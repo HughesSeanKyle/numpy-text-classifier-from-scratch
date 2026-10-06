@@ -95,8 +95,11 @@ def transform_tfidf(bow_matrix: np.ndarray, idf: np.ndarray) -> np.ndarray:
     # Do NOT L2-normalize rows or alter the output shapes/dtypes
     return bow_matrix * idf
 
-# Step 12 - fit_tfidf (not yet solved)
-# TODO: implement
+# Step 12 - fit_tfidf
+# ── Step 012  fit_tfidf ──
+def fit_tfidf(bow_train_matrix: np.ndarray) -> np.ndarray:
+    df = compute_document_frequencies(bow_train_matrix)
+    return compute_idf(df, bow_train_matrix.shape[0])
 
 # Step 13 - sigmoid (not yet solved)
 # TODO: implement
