@@ -88,8 +88,12 @@ def compute_idf(df: np.ndarray, n_docs: int) -> np.ndarray:
     # 3. Vectorized true division, natural log, and trailing baseline shift
     return np.log(numerator / denominator) + 1.0
 
-# Step 11 - transform_tfidf (not yet solved)
-# TODO: implement
+# Step 11 - transform_tfidf
+# ── Step 011  transform_tfidf (Corrected Vector Multiply) ──
+def transform_tfidf(bow_matrix: np.ndarray, idf: np.ndarray) -> np.ndarray:
+    # Scale term counts via standard column-wise broadcasting 
+    # Do NOT L2-normalize rows or alter the output shapes/dtypes
+    return bow_matrix * idf
 
 # Step 12 - fit_tfidf (not yet solved)
 # TODO: implement
