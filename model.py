@@ -219,8 +219,26 @@ def tune_decision_threshold(y_true: np.ndarray, proba: np.ndarray, thresholds: n
             best_threshold = t
     return float(best_threshold), float(best_f1)
 
-# Step 24 - evaluate_predictions (not yet solved)
-# TODO: implement
+# Step 24 - evaluate_predictions
+# ── Step 024  evaluate_predictions (Dictionary Alignment) ──
+def evaluate_predictions(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:
+    # 1. Extract the raw matrix count configurations
+    tp, fp, tn, fn = confusion_counts(y_true, y_pred)
+    
+    # 2. Extract the continuous performance rates from your Step 22 helper dictionary
+    metrics = metrics_from_counts(tp, fp, tn, fn)
+    
+    # 3. Assemble and return a single, flat dictionary mapping string keys to values
+    return {
+        "tp": int(tp),
+        "fp": int(fp),
+        "tn": int(tn),
+        "fn": int(fn),
+        "precision": float(metrics["precision"]),
+        "recall": float(metrics["recall"]),
+        "f1": float(metrics["f1"]),
+        "accuracy": float(metrics["accuracy"])
+    }
 
 # Step 25 - vectorize_texts (not yet solved)
 # TODO: implement
