@@ -20,8 +20,10 @@ def clean_text(text: str) -> str:
 def tokenize(text: str) -> list[str]:
     return clean_text(text).split()
 
-# Step 3 - tokenize_corpus (not yet solved)
-# TODO: implement
+# Step 3 - tokenize_corpus
+# ── Step 003  tokenize_corpus ──
+def tokenize_corpus(texts: list[str]) -> list[list[str]]:
+    return [tokenize(t) for t in texts]
 
 # Step 4 - split_train_val_test_indices (not yet solved)
 # TODO: implement
