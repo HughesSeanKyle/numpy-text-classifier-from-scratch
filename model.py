@@ -62,8 +62,14 @@ def tokens_to_bow(tokens: list[str], vocab: dict[str, int]) -> np.ndarray:
             bow[vocab[token]] += 1.0
     return bow
 
-# Step 8 - corpus_to_bow_matrix (not yet solved)
-# TODO: implement
+# Step 8 - corpus_to_bow_matrix
+# ── Step 008  corpus_to_bow_matrix (Fixed Empty Corpus Case) ──
+def corpus_to_bow_matrix(tokenized_corpus: list[list[str]], vocab: dict[str, int]) -> np.ndarray:
+    # If the corpus is empty, explicitly return an empty 2D array of shape (0, V)
+    if not tokenized_corpus:
+        return np.empty((0, len(vocab)), dtype=float)
+        
+    return np.array([tokens_to_bow(tokens, vocab) for tokens in tokenized_corpus])
 
 # Step 9 - compute_document_frequencies (not yet solved)
 # TODO: implement
