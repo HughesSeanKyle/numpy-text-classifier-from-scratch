@@ -203,8 +203,21 @@ def metrics_from_counts(tp: int, fp: int, tn: int, fn: int) -> dict:
     accuracy = (tp + tn) / (tp + fp + fn + tn) if (tp + fp + fn + tn) > 0 else 0.0
     return {"precision": precision, "recall": recall, "f1": f1, "accuracy": accuracy}
 
-# Step 23 - tune_decision_threshold (not yet solved)
-# TODO: implement
+# Step 23 - tune_decision_threshold
+def tune_decision_threshold(y_true: np.ndarray, proba: np.ndarray, thresholds: np.ndarray = None) -> tuple:
+    # 1. Fallback to the default 101-point linspace grid if thresholds is None
+    if thresholds is None:
+        thresholds = np.linspace(0.0, 1.0, 101)
+    best_threshold = 0.5
+    best_f1 = -1.0
+    for t in thresholds:
+        preds = predict_labels(proba, t)
+        tp, fp, tn, fn = confusion_counts(y_true, preds)
+        metrics = metrics_from_counts(tp, fp, tn, fn)
+        if metrics["f1"] > best_f1:
+            best_f1 = metrics["f1"]
+            best_threshold = t
+    return float(best_threshold), float(best_f1)
 
 # Step 24 - evaluate_predictions (not yet solved)
 # TODO: implement
