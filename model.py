@@ -53,8 +53,14 @@ def build_vocabulary(word_counts: dict[str, int], max_size: int) -> dict[str, in
     sorted_words = sorted(word_counts.items(), key=lambda item: (-item[1], item[0]))
     return {word: idx for idx, (word, _) in enumerate(sorted_words[:max_size])}
 
-# Step 7 - tokens_to_bow (not yet solved)
-# TODO: implement
+# Step 7 - tokens_to_bow
+# ── Step 007  tokens_to_bow ──
+def tokens_to_bow(tokens: list[str], vocab: dict[str, int]) -> np.ndarray:
+    bow = np.zeros(len(vocab), dtype=float)
+    for token in tokens:
+        if token in vocab:
+            bow[vocab[token]] += 1.0
+    return bow
 
 # Step 8 - corpus_to_bow_matrix (not yet solved)
 # TODO: implement
