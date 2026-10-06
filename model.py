@@ -130,8 +130,10 @@ def logistic_gradients(X: np.ndarray, y_true: np.ndarray, y_proba: np.ndarray, w
     db = float(np.mean(error))
     return (dw, db)
 
-# Step 17 - initialize_logistic_params (not yet solved)
-# TODO: implement
+# Step 17 - initialize_logistic_params
+# ── Step 017  initialize_logistic_params ──
+def initialize_logistic_params(n_features: int):
+    return np.zeros(n_features, dtype=float), 0.0
 
 # Step 18 - gradient_descent_step (not yet solved)
 # TODO: implement
