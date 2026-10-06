@@ -240,8 +240,12 @@ def evaluate_predictions(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, fl
         "accuracy": float(metrics["accuracy"])
     }
 
-# Step 25 - vectorize_texts (not yet solved)
-# TODO: implement
+# Step 25 - vectorize_texts
+# ── Step 025  vectorize_texts ──
+def vectorize_texts(texts: list[str], vocab: dict[str, int], idf: np.ndarray) -> np.ndarray:
+    tok = tokenize_corpus(texts)
+    bow = corpus_to_bow_matrix(tok, vocab)
+    return transform_tfidf(bow, idf)
 
 # Step 26 - predict_text (not yet solved)
 # TODO: implement
