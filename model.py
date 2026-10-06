@@ -15,8 +15,10 @@ def clean_text(text: str) -> str:
     # 2. Strip only outer leading/trailing spaces without touching internal gaps
     return cleaned.strip()
 
-# Step 2 - tokenize (not yet solved)
-# TODO: implement
+# Step 2 - tokenize
+# ── Step 002  tokenize ──
+def tokenize(text: str) -> list[str]:
+    return clean_text(text).split()
 
 # Step 3 - tokenize_corpus (not yet solved)
 # TODO: implement
