@@ -253,6 +253,9 @@ def predict_text(text: str, vocab: dict, idf: np.ndarray, w: np.ndarray, b: floa
     proba = logistic_predict_proba(X, w, b)
     return int(predict_labels(proba, threshold)[0])
 
-# Step 27 - collect_prediction_errors (not yet solved)
-# TODO: implement
+# Step 27 - collect_prediction_errors
+def collect_prediction_errors(texts: list, y_true: np.ndarray, y_pred: np.ndarray) -> dict:
+    false_positives = [texts[i] for i in range(len(texts)) if y_true[i] == 0 and y_pred[i] == 1]
+    false_negatives = [texts[i] for i in range(len(texts)) if y_true[i] == 1 and y_pred[i] == 0]
+    return {"false_positives": false_positives, "false_negatives": false_negatives}
 
