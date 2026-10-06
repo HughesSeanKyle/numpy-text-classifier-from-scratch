@@ -106,8 +106,10 @@ def fit_tfidf(bow_train_matrix: np.ndarray) -> np.ndarray:
 def sigmoid(z: np.ndarray) -> np.ndarray:
     return 1.0 / (1.0 + np.exp(-np.clip(z, -500, 500)))
 
-# Step 14 - logistic_predict_proba (not yet solved)
-# TODO: implement
+# Step 14 - logistic_predict_proba
+# ── Step 014  logistic_predict_proba ──
+def logistic_predict_proba(X: np.ndarray, w: np.ndarray, b: float) -> np.ndarray:
+    return sigmoid(np.dot(X, w) + b)
 
 # Step 15 - binary_cross_entropy (not yet solved)
 # TODO: implement
