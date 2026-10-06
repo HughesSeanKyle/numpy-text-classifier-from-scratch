@@ -54,6 +54,7 @@ def build_vocabulary(word_counts: dict[str, int], max_size: int) -> dict[str, in
     return {word: idx for idx, (word, _) in enumerate(sorted_words[:max_size])}
 
 # Step 7 - tokens_to_bow
+import numpy as np
 # ── Step 007  tokens_to_bow ──
 def tokens_to_bow(tokens: list[str], vocab: dict[str, int]) -> np.ndarray:
     bow = np.zeros(len(vocab), dtype=float)
@@ -194,8 +195,10 @@ def confusion_counts(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, int]:
     tn = int(np.sum((y_true == 0) & (y_pred == 0)))
     return tp, fp, tn, fn
 
-# Step 22 - metrics_from_counts (not yet solved)
-# TODO: implement
+# Step 22 - metrics_from_counts
+def metrics_from_counts(tp: int, fp: int, tn: int, fn: int) -> dict:
+    # TODO: Derive precision, recall, F1, and accuracy from confusion counts...
+    pass
 
 # Step 23 - tune_decision_threshold (not yet solved)
 # TODO: implement
