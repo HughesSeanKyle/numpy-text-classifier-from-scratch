@@ -101,8 +101,10 @@ def fit_tfidf(bow_train_matrix: np.ndarray) -> np.ndarray:
     df = compute_document_frequencies(bow_train_matrix)
     return compute_idf(df, bow_train_matrix.shape[0])
 
-# Step 13 - sigmoid (not yet solved)
-# TODO: implement
+# Step 13 - sigmoid
+# ── Step 013  sigmoid ──
+def sigmoid(z: np.ndarray) -> np.ndarray:
+    return 1.0 / (1.0 + np.exp(-np.clip(z, -500, 500)))
 
 # Step 14 - logistic_predict_proba (not yet solved)
 # TODO: implement
