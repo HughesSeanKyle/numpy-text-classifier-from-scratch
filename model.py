@@ -135,8 +135,24 @@ def logistic_gradients(X: np.ndarray, y_true: np.ndarray, y_proba: np.ndarray, w
 def initialize_logistic_params(n_features: int):
     return np.zeros(n_features, dtype=float), 0.0
 
-# Step 18 - gradient_descent_step (not yet solved)
-# TODO: implement
+# Step 18 - gradient_descent_step
+# ── Step 018  gradient_descent_step (Full Batch Update + Loss Chaining) ──
+def gradient_descent_step(X: np.ndarray, y: np.ndarray, w: np.ndarray, b: float, lr: float, l2_lambda: float) -> tuple:
+    # 1. Forward Pass: Compute probabilities using our stable sigmoid helper
+    y_proba = logistic_predict_proba(X, w, b)
+    
+    # 2. Metric Collection: Calculate the regularised cross-entropy loss
+    loss = binary_cross_entropy(y, y_proba, w, l2_lambda)
+    
+    # 3. Backward Pass: Compute gradients for weights and bias
+    dw, db = logistic_gradients(X, y, y_proba, w, l2_lambda)
+    
+    # 4. Optimization: Adjust parameters against the gradient direction
+    w_new = w - lr * dw
+    b_new = b - lr * db
+    
+    # Return exactly the 3-element tuple expected by the harness
+    return w_new, b_new, loss
 
 # Step 19 - train_logistic_regression (not yet solved)
 # TODO: implement
