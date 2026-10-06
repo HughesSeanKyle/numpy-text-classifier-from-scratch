@@ -154,8 +154,21 @@ def gradient_descent_step(X: np.ndarray, y: np.ndarray, w: np.ndarray, b: float,
     # Return exactly the 3-element tuple expected by the harness
     return w_new, b_new, loss
 
-# Step 19 - train_logistic_regression (not yet solved)
-# TODO: implement
+# Step 19 - train_logistic_regression
+# ── Step 019  train_logistic_regression (Synchronized) ──
+def train_logistic_regression(X: np.ndarray, y: np.ndarray, lr: float, l2_lambda: float, n_epochs: int) -> tuple:
+    # 1. Safely initialize weights and bias vectors based on feature width
+    w, b = initialize_logistic_params(X.shape[1])
+    losses = []
+    
+    # 2. Iterate through epochs using our updated unified gradient descent function
+    for _ in range(n_epochs):
+        # Step 018 now internally computes proba, loss, gradients, and returns updated params
+        w, b, loss = gradient_descent_step(X, y, w, b, lr, l2_lambda)
+        losses.append(loss)
+        
+    # 3. Return the fully trained parameters along with the historical track
+    return w, b, losses
 
 # Step 20 - predict_labels (not yet solved)
 # TODO: implement
