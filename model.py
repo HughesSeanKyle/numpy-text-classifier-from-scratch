@@ -76,8 +76,17 @@ def corpus_to_bow_matrix(tokenized_corpus: list[list[str]], vocab: dict[str, int
 def compute_document_frequencies(bow_matrix: np.ndarray) -> np.ndarray:
     return np.sum(bow_matrix > 0, axis=0)
 
-# Step 10 - compute_idf (not yet solved)
-# TODO: implement
+# Step 10 - compute_idf
+# ── Step 010  compute_idf (Corrected Signature & Math) ──
+def compute_idf(df: np.ndarray, n_docs: int) -> np.ndarray:
+    # 1. Scalar numerator with Laplace smoothing
+    numerator = n_docs + 1
+    
+    # 2. Element-wise denominator array with Laplace smoothing
+    denominator = df + 1
+    
+    # 3. Vectorized true division, natural log, and trailing baseline shift
+    return np.log(numerator / denominator) + 1.0
 
 # Step 11 - transform_tfidf (not yet solved)
 # TODO: implement
