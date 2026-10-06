@@ -121,8 +121,14 @@ def binary_cross_entropy(y_true: np.ndarray, y_proba: np.ndarray, w: np.ndarray,
     reg = 0.5 * l2_lambda * np.sum(w ** 2)
     return float(loss + reg)
 
-# Step 16 - logistic_gradients (not yet solved)
-# TODO: implement
+# Step 16 - logistic_gradients
+# ── Step 016  logistic_gradients ──
+def logistic_gradients(X: np.ndarray, y_true: np.ndarray, y_proba: np.ndarray, w: np.ndarray, l2_lambda: float):
+    m = X.shape[0]
+    error = y_proba - y_true
+    dw = (np.dot(X.T, error) / m) + (l2_lambda * w)
+    db = float(np.mean(error))
+    return (dw, db)
 
 # Step 17 - initialize_logistic_params (not yet solved)
 # TODO: implement
